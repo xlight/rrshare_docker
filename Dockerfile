@@ -30,4 +30,5 @@ WORKDIR /
 VOLUME ["/opt/work/store","/opt/work/conf"]
 EXPOSE 3001 
 
-CMD ["sh", "-c", "if [ ! -f /opt/work/conf/rrshare.db ]; then echo "conf not found,build!" && rm -rf /opt/work/conf && mv /rrshare/rrshareweb/conf /opt/work/ && ln -s /opt/work/conf /rrshare/rrshareweb/conf ; else echo "file found,continue"; fi; /rrshare/rrshareweb/rrshareweb"]
+CMD ["sh", "-c", "if [ ! -f /opt/work/conf/rrshare.db ]; then echo 'conf not found,build!' && mkdir -p /opt/work/conf && mv /rrshare/rrshareweb/conf/* /opt/work/conf/ && ln -s /opt/work/conf/rrshare.db /rrshare/rrshareweb/conf/ &&   ln -s /opt/work/conf/rrshare.json /rrshare/rrshareweb/conf/ ; else echo 'file found,link!' && rm -f /rrshare/rrshareweb/conf/* && ln -s /opt/work/conf/rrshare.db /rrshare/rrshareweb/conf/ &&   ln -s /opt/work/conf/rrshare.json /rrshare/rrshareweb/conf/ ; fi; /rrshare/rrshareweb/rrshareweb"]
+
