@@ -24,8 +24,6 @@ RUN apk update \
 	&& apk del wget tzdata \
 	&& rm -rf /glibc-${GLIBC_VERSION}.apk \
 	&& rm -rf /glibc-bin-${GLIBC_VERSION}.apk
-	&& mkdir -p /opt/work/conf \
-	&& cp /rrshare/rrshareweb/conf/* /opt/work/conf/
 	
 
 WORKDIR /
