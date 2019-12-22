@@ -24,9 +24,13 @@ RUN apk update \
 	&& apk del wget tzdata \
 	&& rm -rf /glibc-${GLIBC_VERSION}.apk \
 	&& rm -rf /glibc-bin-${GLIBC_VERSION}.apk
+	&& mkdir -p /opt/work/conf \
+	&& cp /rrshare/rrshareweb/conf/* /opt/work/conf/
+	
 
 WORKDIR /
-VOLUME ["/opt/work/store"]
+VOLUME ["/opt/work/store","/opt/work/conf"]
 EXPOSE 3001 
 
-CMD ["sh", "-c", "/rrshare/rrshareweb/rrshareweb"]
+CMD ["sh", "-c", "if [ ! -f /opt/work/conf/rrshare.db ]; then echo "conf not found,build!" && rm -rf /opt/work/conf && mv /rrshare/rrshareweb/conf /opt/work/ && ln -s /opt/work/conf /rrshare/rrshar
+eweb/conf ; else echo "file found,continue"; fi; /rrshare/rrshareweb/rrshareweb"]
