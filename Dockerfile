@@ -1,7 +1,7 @@
 #本镜像基于最新版alpine+glibc+rrshareweb
 FROM alpine:20190228
 
-LABEL MAINTAINER="azure <https://baiyue.one>"
+LABEL MAINTAINER="xLight <https://xlight.me/>"
 
 
 # 配置glibc
