@@ -32,3 +32,4 @@ EXPOSE 3001
 
 CMD ["sh", "-c", "if [ ! -f /opt/work/conf/rrshare.db ]; then echo 'conf not found,build!' && mkdir -p /opt/work/conf && mv /rrshare/rrshareweb/conf/* /opt/work/conf/ && ln -s /opt/work/conf/rrshare.db /rrshare/rrshareweb/conf/ &&   ln -s /opt/work/conf/rrshare.json /rrshare/rrshareweb/conf/ ; else echo 'file found,link!' && rm -f /rrshare/rrshareweb/conf/* && ln -s /opt/work/conf/rrshare.db /rrshare/rrshareweb/conf/ &&   ln -s /opt/work/conf/rrshare.json /rrshare/rrshareweb/conf/ ; fi; /rrshare/rrshareweb/rrshareweb"]
 
+RUN sed -i "s/http:\/\/www\.zmzfile\.com\/file\//http:\/\/file.apicvn.com\/file\//g" /rrshare/rrshareweb/web/build/static/js/main.*.js
